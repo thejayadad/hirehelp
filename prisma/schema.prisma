@@ -28,11 +28,17 @@ model Job {
   id            String    @id @default(cuid())
   name          String
   description   String
+  type             String
+  locationType     String
+  location         String?
   employerId    String
   employerEmail String
   currentBid    Int
   startingPrice Int
   bidInterval   Int
+  applicationEmail String?
+  applicationUrl   String?
+  approved         Boolean  @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   bids          Bid[]     // One-to-many relation with Bid
@@ -44,6 +50,7 @@ model Bid {
   amount    Int
   bidderEmail String
   jobId     String
+  approve   Boolean
   job       Job      @relation(fields: [jobId], references: [id])
   bidder    User     @relation(fields: [bidderEmail], references: [email])
   createdAt DateTime @default(now())
