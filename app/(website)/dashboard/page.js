@@ -12,7 +12,6 @@ const DashboardPage = async () => {
     // Create a user if no user
     try {
         const existingUser = await createUser(userEmail, userName)
-        console.log("Existing User: ", existingUser)
     } catch (error) {
         console.error("Error in DashboardPage:", error)
     }
