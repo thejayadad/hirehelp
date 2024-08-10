@@ -15,11 +15,13 @@ datasource db {
 }
 
 model User {
-  id  String    @id @default(cuid())
-  name String
-  email String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  jobs      Job[]     // One-to-many relation with Job
+  bids      Bid[]     // One-to-many relation with Bid
 }
 
 model Job {
@@ -27,20 +29,23 @@ model Job {
   name          String
   description   String
   employerId    String
+  employerEmail String
   currentBid    Int
   startingPrice Int
   bidInterval   Int
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   bids          Bid[]     // One-to-many relation with Bid
+  employer      User      @relation(fields: [employerEmail], references: [email])
 }
 
 model Bid {
   id        String   @id @default(cuid())
   amount    Int
-  bidderId  String
+  bidderEmail String
   jobId     String
   job       Job      @relation(fields: [jobId], references: [id])
+  bidder    User     @relation(fields: [bidderEmail], references: [email])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
