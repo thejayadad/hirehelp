@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import SidebarItem from './sidebar-item'
 import { FiHome, FiDatabase, FiSearch } from "react-icons/fi"
+import { UserButton } from '@clerk/nextjs'
 
 const routes = [
     {
@@ -45,6 +46,9 @@ const Sidebar = () => {
                         icon={route.icon} 
                     />
                 ))}
+            </div>
+            <div className='p-4'>
+                <UserButton />
             </div>
         </div>
     )
