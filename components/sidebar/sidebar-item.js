@@ -9,7 +9,7 @@ const SidebarItem = ({ label, href, icon }) => {
     
     return (
         <Link
-            className={`h-[52px] justify-start flex items-center ${active ? 'bg-gray-200 border-l-4 border-r-4 border-purple-500' : ''}`}
+            className={`h-[52px] justify-start flex items-center ${active ? 'bg-secondary/10 border-l-4 border-r-4 border-primary' : ''}`}
             href={href}
         >
             <div className='flex items-center gap-x-2 text-sm font-[500] pl-5 transition-all'>
